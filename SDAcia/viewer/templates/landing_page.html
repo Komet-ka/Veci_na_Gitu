@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>Inzerce Aut - SDAcia</h1>
+
+<ul>
+    {% for auto in auta %}
+      <li>
+        {{ auto.znacka }} ({{ auto.karoserie }}) - {{ auto.rok_vyroby }}
+        <a href="/inzerat/{{auto.pk}}" class="button">
+            Prohlédnout inzerát
+        </a>
+          <br><br>
+      </li>
+
+    {% endfor %}
+</ul>
+<br>
+<a href="/novy_inzerat" class="button">
+           Přidat nový inzerát
+</a>
+
+{% endblock %}

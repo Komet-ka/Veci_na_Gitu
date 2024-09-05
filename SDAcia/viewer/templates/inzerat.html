@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>Inzerce Aut - SDAcia</h1>
+
+<h3>Inzerát {{ auto.name }}</h3>
+
+<h4>{{ auto.znacka }} ({{ auto.karoserie }}) - {{ auto.rok_vyroby }}</h4><br>
+
+    Znacka auta {{ auto.znacka }}<br>
+    Typ karoserie: {{ auto.karoserie }}<br>
+    Vykon (kW): {{ auto.vykon }}<br>
+    Rok vyroby: {{ auto.rok_vyroby }}<br><br>
+    Popis: {{ auto.description }}<br><br>
+    Cena (Kč): {{ auto.price }}<br>
+    Inzerát přidán: {{ auto.datum_inzeratu }}<br><br>
+
+<h3>Komentáře</h3>
+<ul>
+    {% for komentar in komentare %}
+      <li>
+        {{ komentar.uzivatel }} ({{ komentar.komentar }}) - {{ komentar.datum_komentare }}
+          <br><br>
+      </li>
+    {% endfor %}
+</ul>
+
+          <form action="/inzerat/{{auto.pk}}" method="POST">
+            {% csrf_token %}
+              titulek komentáře:
+              <input name="name"></br><br>
+              uzivatel:
+              <input name="uzivatel"></br><br>
+              váš nový komentář:
+              <textarea name="komentar" style="width: 400px; height: 150px;"></textarea></br><br>
+            <input type="submit" value="Přidat nový komentář">
+          </form>
+
+{% endblock %}

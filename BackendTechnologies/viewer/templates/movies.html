@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Welcome to HollyMovies!</h1>
+  <ul>
+    {% for movie in movies %}
+      <li>
+        {{ movie.title }} ({{ movie.released.year }}) - {{ movie.genre.name }}
+        <a href="/inzerat/{{auto.pk}}" class="button">
+            update
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <form action = "/movie_filter" method="POST">
+    {% csrf_token %}
+    Genre:
+
+    <input type="submit">
+  </form>
+
+{% endblock %}

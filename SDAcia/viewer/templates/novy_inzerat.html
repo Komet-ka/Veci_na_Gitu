@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block main_title %} {{ title }} {% endblock %}
+{% block content %}
+<h1>Inzerce Aut - SDAcia</h1><br>
+
+<h3>Vložit nový inzerát</h3><br>
+
+<form method="POST" action="/novy_inzerat">
+    {% csrf_token %}
+    name:
+    <input name="name"></br><br>
+    <label for="znacka">Vyber značku:</label>
+        <select id="znacka" name="znacka">
+            {% for znacka in znacky %}
+                <option value="{{ znacka.id }}">{{ znacka.name }}</option>
+            {% endfor %}
+        </select><br><br>
+    <label for="karoserie">Vyber typ karoserie:</label>
+        <select id="karoserie" name="karoserie">
+            {% for karoserie in vsechny_karoserie %}
+                <option value="{{ karoserie.id }}">{{ karoserie.name }}</option>
+            {% endfor %}
+        </select><br><br>
+    vykon (kW):
+    <input vykon="vykon"></br><br>
+    rok_vyroby:
+    <input rok_vyroby="rok_vyroby"></br><br>
+    description:
+    <textarea name="komentar" style="width: 400px; height: 150px;"></textarea></br><br>
+    price (kč):
+    <input price="price"></br><br>
+    <input type="submit">
+</form>
+
+{% endblock %}
